@@ -1,0 +1,89 @@
+
+----------------------------- BANDA MAGICA -----------------------------
+  
+  In acest program este prezentata o banda magica implementata cu ajutorul
+unei liste dublu inlantuita cu santinela si operatii cu ajutorul carora 
+putem face schimbari asupra benzii si asupra pozitiei pe banda.
+
+--------------------------------- MAIN ---------------------------------
+
+  In main apelez functiile de creare a listei, cozii si stivelor.
+Deschid fisierele de input si output.
+
+  Pentru a executa operatiile, verific mai intai cate operatii vor
+fi executate. Dupa acest lucru scanez fiecare string si il compar,
+daca sunt identice se intra in if si se face operatia ulterioare.
+Daca operatie are si un caracter scanez mai intai string ul si dupa
+caracterul.
+
+        Operatiile si functiie - o scurta descriere de implementare:
+
+  MOVE_RIGHT - Daca next-ul nodului curent este NULL, atunci se adauga un
+nod nou si pozitia degetului se muta pe acel deget, daca nu, doar se muta 
+pe urmatorul nod
+
+  MOVE_LEFT - Daca prev-ul nodului curent este santinela, atunci pozitia
+degetului nu se schimba daca nu, pozitia degetului se muta pe nod ul din
+stanga;
+
+  WRITE - Pe pozitia nodului curent, pun un caracter;
+
+  INSERT_LEFT - Daca pozitia degetului se afla pe primul nod, se va afisa
+eroare la aceasa operatie, daca nu, se va insera un nod nou la stanga si
+pozitia degetului se va muta pe el.
+
+  INSERT_RIGHT - Daca in partea dreapta a pozitiei curente nu este nimic,
+se creeaza un nod si se muta pozitia degetului pe el, daca este, se 
+insereaza intre acel nod si pozitia curenta un nod nou;
+
+  MOVE_LEFT_CHAR - Itereazala stanga pana la nodul care contine caracterul 
+cerut si mut degetul pe acel nod, daca nu exista caracterul cerut,
+programul afiseaza eroare deoarece ajunge la santinela si pozitia degetului
+nu se schimba;
+
+  MOVE_RIGHT_CHAR - Itereazza la dreapta pana la nodul care contine 
+caracterul cerut si mut degetul pe acel nod,daca nu exista caracterul cerut,
+se insereaza un nod nou la sfarsit si se muta pozitia degetului pe acel nod;
+
+  Pentru comanda EXECUTE, se cisteste mai intai fiecare comanda din fisier
+si se baga in coada pe rand pointerii functiilor, pentru acest lucru s au
+folosit 2 functii de introducere in coada, deoarece functiile au parametri
+diferiti, unele au ca parametru (List* list si char item) iar altele au 
+doar (List* list).
+Se introduce in coada de la sfarsit, odata ce intalneste comanda "EXECUTE",
+se scoate pe rand din coada dupa regula (First in, first out),se salveaza 
+intr un auxiliar primul nod din coada (head) si se sterge dupa ce s a apelat
+functia, iterand mai departe prin coada.
+
+  Pentru stivele undo si redo, mai intai se baga in stiva UNDO pozitia
+curenta inainte de comanda EXECUTE (adica mai intai se baga pozitia curenta
+in stiva si dupa se apeleaza functia. Acest lucru il se face doar pentru
+operatiile "MOVE_LEFT", "MOVE_RIGHT", verificand daca pointerului functiei 
+este egal cu adresa functiei, daca se intalnesc alte functii se goleste stiva
+deoarece pentru alte operatii nu se fac operatii de undo si redo.
+
+  Odata ce execut comanda UNDO, scot din stiva dupa regula (LAST IN, FISRT OUT),
+si bag in stiva REDO, pozitia mea curenta, degetul mutandu se pozitia salvata
+in UNDO. Cand execut REDO, fac acelasi lucru, scot din REDO si bag in UNDO.
+
+  SHOW - pentru a arata banda, iterez de la primul nod (nu santinela) pana la
+sfarsitul benzii, afisand elemente din fiecare nod pe rand, pentru pozitia
+degetului folosesc "| |".
+
+Pentru a elibera memoria din program am folosit 3 functii, prima dealoca 
+memoria pentru lista, porneste de la santinel si trece prin fiecare nod
+pana la NULL;
+
+La stiva si coada am folosit aproximativ aceeasi functie doarece ambele sunt
+doar niste concepte create cu ajutorul unei liste simnplu inlantuite, la fel
+am iterat prin fiecare nod si l am sters.
+
+---------------------------------- FISIERE ----------------------------------
+
+  Fisierele le am salvat in structura pentru lista doarece nu voiam sa le dau
+ca argument in functii, pentru ca trebuia sa schimb functiile de introducere
+in coada, adica unele functii trebuiau sa aiba deja 3 argumente.
+
+-----------------------------------------------------------------------------
+
+                                               Cu drag, VRINCEANU DAN 315 CD
